@@ -204,7 +204,7 @@ if pd_notacredito_origin.empty == False:
 st.subheader("Filtered data will appear below 👇 ")
 st.text("")
 
-st.table(df_factura_lite)
+st.table(df_consolidado)
 
     
 st.text("")
