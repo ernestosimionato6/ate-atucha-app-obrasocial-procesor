@@ -136,7 +136,8 @@ if df_factura_selected.empty == False:
     df_factura_lite['Monto SB02'] = (df_factura_lite['Cant miembros'] * precio_sb02_per_capita).round()
     
     df_montos_por_capita_encontrados = (df_factura_lite['Monto Factura'] / df_factura_lite['Cant miembros']).round(1).unique()
-    st.markdown("> montos por capita encontrados son" + df_montos_por_capita_encontrados)
+    st.markdown("> montos por capita encontrados son")
+    st.print(df_montos_por_capita_encontrados)
     
     
 df_merge_origin = pd.DataFrame()
