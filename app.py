@@ -120,7 +120,7 @@ response = AgGrid(
     fit_columns_on_grid_load=False,
 )
 
-df_consolidado pd.DataFrame()
+df_consolidado = pd.DataFrame()
 
 df_factura_selected = pd.DataFrame(response["selected_rows"])
 
