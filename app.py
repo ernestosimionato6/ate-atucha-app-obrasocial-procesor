@@ -159,7 +159,7 @@ if pd_notacredito_origin.empty == False:
     gb_sin_nota = GridOptionsBuilder.from_dataframe(df_sin_nota)
     # enables pivoting on all columns, however i'd need to change ag grid to allow export of pivoted/grouped data, however it select/filters groups
     gb_sin_nota.configure_default_column(enablePivot=True, enableValue=True, enableRowGroup=True)
-    gb_sin_nota.configure_selection(selection_mode="multiple", use_checkbox=True)
+    gb_sin_nota.configure_selection(selection_mode="multiple", use_checkbox=False)
     gb_sin_nota.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
     gridSinNotaOptions = gb_sin_nota.build()
 
@@ -181,7 +181,7 @@ if pd_notacredito_origin.empty == False:
     gb_consolidado = GridOptionsBuilder.from_dataframe(df_consolidado)
     # enables pivoting on all columns, however i'd need to change ag grid to allow export of pivoted/grouped data, however it select/filters groups
     gb_consolidado.configure_default_column(enablePivot=True, enableValue=True, enableRowGroup=True)
-    gb_consolidado.configure_selection(selection_mode="multiple", use_checkbox=True)
+    gb_consolidado.configure_selection(selection_mode="multiple", use_checkbox=False)
     gb_consolidado.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
     gridConsolidadoOptions = gb_consolidado.build()
 
