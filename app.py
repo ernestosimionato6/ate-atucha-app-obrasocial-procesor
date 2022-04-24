@@ -209,8 +209,7 @@ if pd_notacredito_origin.empty == False:
 st.subheader("Los datos consolidados aparecerán debajo 👇")
 st.text("")
 
-st.table(df_consolidado)
-
+st.dataframe(df_consolidado.style.format("{:.2%}"))
     
 st.text("")
 
