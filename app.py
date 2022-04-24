@@ -38,6 +38,10 @@ st.image(
 st.title("Atucha Ate - Obra Social Procesor")
 
 
+st.markdown("-----------")
+st.markdown("## Paso nro1 - Cargamos la Factura:")
+
+
 c29, c30, c31 = st.columns([1, 6, 1])
 
 with c30:
@@ -58,6 +62,29 @@ with c30:
         st.info(
             f"""
                 👆 Cargue una factura.xslx primero. Muestra para probar: [factura.xslx](https://docs.google.com/spreadsheets/d/e/2PACX-1vTkO14QeW1s6OMFhSQd1XwUyERxVZ7mwiw_X7PHoXIlvGh_xYWKq4nmsCpbRjjbQg/pub?output=xlsx))
+                """
+        )
+
+        st.stop()
+        
+        
+        
+    notacredito_uploaded_file = st.file_uploader(
+        "",
+        key="1",
+        help="To activate 'wide mode', go to the hamburger menu > Settings > turn on 'wide mode'",
+    )
+
+    if notacredito_uploaded_file is not None:
+        notacredito_file_container = st.expander("Check your uploaded .csv")
+        pd_notacredito_origin = pd.read_excel(notacredito_uploaded_file)
+        notacredito_uploaded_file.seek(0)
+        notacredito_file_container.write(pd_notacredito_origin)
+
+    else:
+        st.info(
+            f"""
+                👆 Cargue una notacredito.xslx primero. Muestra para probar: [notacredito.xslx](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2Acg3snX-xtiz-q-oe3xlO2gdMFOU-_5oXclNEnrUmNlPBdl4MdXplzZkthgPrA/pub?output=xlsx))
                 """
         )
 
@@ -87,21 +114,32 @@ response = AgGrid(
     fit_columns_on_grid_load=False,
 )
 
+
+
 df_factura_selected = pd.DataFrame(response["selected_rows"])
 st.text(df_factura_selected.empty)
 df_factura_lite = pd.DataFrame()
 if df_factura_selected.empty == False:
+    
+    
+    
     # df_factura_selected = pd.DataFrame(response["selected_rows"])
     df_factura_selected['Plan'] = df_factura_selected['Plan tarifa'].str.slice(0,4)
     df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan', 'Cant miembros', 'Importe exento']
     df_factura_lite = df_factura_selected[df_factura_columns]
     df_factura_lite.rename(columns = {'Importe exento':'Monto Factura'}, inplace = True)
 
+if df_notacredito_origin.empty == False:
+    df_notacredito_lite = df_notacredito_origin
+    
+    
+    
+    
 
-    st.subheader("Filtered data will appear below 👇 ")
-    st.text("")
+st.subheader("Filtered data will appear below 👇 ")
+st.text("")
 
-    st.table(df_factura_lite)
+st.table(df_factura_lite)
 
     
 st.text("")
@@ -133,100 +171,6 @@ with c31:
         )
 
     
-
-c29, c30, c31 = st.columns([1, 6, 1])
-
-with c30:
-
-    factura_uploaded_file = st.file_uploader(
-        "",
-        key="1",
-        help="To activate 'wide mode', go to the hamburger menu > Settings > turn on 'wide mode'",
-    )
-
-    if factura_uploaded_file is not None:
-        factura_file_container = st.expander("Check your uploaded .csv")
-        pd_factura_origin = pd.read_excel(factura_uploaded_file)
-        factura_uploaded_file.seek(0)
-        factura_file_container.write(pd_factura_origin)
-
-    else:
-        st.info(
-            f"""
-                👆 Cargue una factura.xslx primero. Muestra para probar: [factura.xslx](https://docs.google.com/spreadsheets/d/e/2PACX-1vTkO14QeW1s6OMFhSQd1XwUyERxVZ7mwiw_X7PHoXIlvGh_xYWKq4nmsCpbRjjbQg/pub?output=xlsx))
-                """
-        )
-
-        st.stop()
-
-from st_aggrid import GridUpdateMode, DataReturnMode
-
-gb = GridOptionsBuilder.from_dataframe(pd_factura_origin)
-# enables pivoting on all columns, however i'd need to change ag grid to allow export of pivoted/grouped data, however it select/filters groups
-gb.configure_default_column(enablePivot=True, enableValue=True, enableRowGroup=True)
-gb.configure_selection(selection_mode="multiple", use_checkbox=True)
-gb.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
-gridOptions = gb.build()
-
-st.success(
-    f"""
-        💡 Tip! Hold the shift key when selecting rows to select multiple rows at once!
-        """
-)
-
-response = AgGrid(
-    pd_factura_origin,
-    gridOptions=gridOptions,
-    enable_enterprise_modules=True,
-    update_mode=GridUpdateMode.MODEL_CHANGED,
-    data_return_mode=DataReturnMode.FILTERED_AND_SORTED,
-    fit_columns_on_grid_load=False,
-)
-
-df_factura_selected = pd.DataFrame(response["selected_rows"])
-st.text(df_factura_selected.empty)
-df_factura_lite = pd.DataFrame()
-if df_factura_selected.empty == False:
-    # df_factura_selected = pd.DataFrame(response["selected_rows"])
-    df_factura_selected['Plan'] = df_factura_selected['Plan tarifa'].str.slice(0,4)
-    df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan', 'Cant miembros', 'Importe exento']
-    df_factura_lite = df_factura_selected[df_factura_columns]
-    df_factura_lite.rename(columns = {'Importe exento':'Monto Factura'}, inplace = True)
-
-
-    st.subheader("Filtered data will appear below 👇 ")
-    st.text("")
-
-    st.table(df_factura_lite)
-
-    
-st.text("")
-
-c29, c30, c31 = st.columns([1, 1, 2])
-
-with c29:
-
-    CSVButton = download_button(
-        df_factura_lite,
-        "factura_preprocesada.csv",
-        "Download to CSV",
-    )
-
-with c30:
-    CSVButton = download_button(
-        df_factura_lite,
-        "factura_preprocesada.csv",
-        "Download to TXT",
-    )
-    
-with c31:
-    df_factura_lite.to_excel('consolidado.xlsx', index=False)
-    with open("consolidado.xlsx", "rb") as file:
-        btn = st.download_button(
-             label="Download to Excel",
-             data=file,
-             file_name="consolidado.xlsx"
-        )
 
         
     
