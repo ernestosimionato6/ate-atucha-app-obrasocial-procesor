@@ -112,7 +112,7 @@ response = AgGrid(
 )
 
 df_factura_selected = pd.DataFrame(response["selected_rows"])
-df_factura_selected['Plan'] = df_factura_seletec['Plan tarifa'].str.slice(0,4)
+df_factura_selected['Plan'] = df_factura_seleted['Plan tarifa'].str.slice(0,4)
 df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan tarifa', 'Cant miembros', 'Importe exento', 'Plan tarifa']
 df_factura_lite = df_factura_selected[df_factura_columns]
 df_factura_lite.rename(columns = {'Importe exento':'Factura Emitida'}, inplace = True)
