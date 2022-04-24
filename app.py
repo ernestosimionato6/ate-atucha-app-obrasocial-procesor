@@ -165,7 +165,7 @@ if pd_notacredito_origin.empty == False:
 
     st.success(
         f"""
-            💡 Beneficiarios sin nota de credito ! Estos nos se procesaran en el consolidado !
+            💡 Consolidado de Beneficiarios ! Es una vista previa del consolidado generado!
             """
     )
 
@@ -187,7 +187,7 @@ if pd_notacredito_origin.empty == False:
 
     st.success(
         f"""
-            💡 Consolidado de Beneficiarios ! Es una vista previa del consolidado generado!
+            💡 Beneficiarios sin nota de credito ! Estos nos se procesaran en el consolidado !
             """
     )
 
