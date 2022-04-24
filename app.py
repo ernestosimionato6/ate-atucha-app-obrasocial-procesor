@@ -111,7 +111,10 @@ response = AgGrid(
     fit_columns_on_grid_load=False,
 )
 
-df = pd.DataFrame(response["selected_rows"])
+df_factura_selected = pd.DataFrame(response["selected_rows"])
+df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan tarifa', 'Cant miembros', 'Importe exento']
+df_factura_lite = df_factura_selected[df_factura_columns]
+df_factura_lite.rename(columns = {'Importe exento':'Factura Emitida'}, inplace = True)
 
 st.subheader("Filtered data will appear below 👇 ")
 st.text("")
@@ -125,14 +128,14 @@ c29, c30, c31 = st.columns([1, 1, 2])
 with c29:
 
     CSVButton = download_button(
-        df,
-        "File.csv",
+        df_factura_lite,
+        "factura_preprocesada.csv",
         "Download to CSV",
     )
 
 with c30:
     CSVButton = download_button(
-        df,
-        "File.csv",
+        df_factura_lite,
+        "factura_preprocesada.csv",
         "Download to TXT",
     )
