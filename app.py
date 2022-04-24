@@ -240,6 +240,9 @@ st.text("")
 
 # format_dict = {'sum':'${0:,.0f}', 'date': '{:%m-%Y}', 'pct_of_total': '{:.2%}'}
 # st.dataframe(df_consolidado.style.applymap(color_negative_red))
+
+st.dataframe(df_consolidado.describe)
+
 st.dataframe(df_consolidado)
 
 st.text("")
