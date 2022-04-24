@@ -148,27 +148,20 @@ c29, c30, c31 = st.columns([1, 1, 2])
 
 with c29:
 
-    CSVButton = download_button(
-        df_factura_lite,
-        "factura_preprocesada.csv",
-        "Download to CSV",
-    )
+
 
 with c30:
-    CSVButton = download_button(
-        df_factura_lite,
-        "factura_preprocesada.csv",
-        "Download to TXT",
-    )
-    
-with c31:
+
     df_factura_lite.to_excel('consolidado.xlsx', index=False)
     with open("consolidado.xlsx", "rb") as file:
         btn = st.download_button(
-             label="Download to Excel",
+             label="Descargar Consolidado",
              data=file,
              file_name="consolidado.xlsx"
         )
+    
+with c31:
+
 
     
 
