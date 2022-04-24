@@ -133,7 +133,7 @@ if df_factura_selected.empty == False:
     df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan', 'Cant miembros', 'Importe exento']
     df_factura_lite = df_factura_selected[df_factura_columns]
     df_factura_lite.rename(columns = {'Importe exento':'Monto Factura'}, inplace = True)
-    df_factura_lite['Monto SB02'] = (df_factura_lite['Cant miembros'] * precio_sb02_per_capita).round(2)
+    df_factura_lite['Monto SB02'] = df_factura_lite['Cant miembros'] * precio_sb02_per_capita
     
     df_montos_por_capita_encontrados = (df_factura_lite['Monto Factura'] / df_factura_lite['Cant miembros']).round(2).unique()
     st.markdown("> montos por capita encontrados son")
@@ -152,9 +152,9 @@ if pd_notacredito_origin.empty == False:
     df_merge_origin = df_factura_lite.merge(df_notacredito_lite, on='Socio', how='left')
     df_sin_nota = df_merge_origin[pd.isnull(df_merge_origin['Monto Credito'])]
     df_consolidado = df_merge_origin[~pd.isnull(df_merge_origin['Monto Credito'])]
-    df_consolidado['Dif Emitida'] = (df_consolidado['Monto Credito'] - df_consolidado['Monto Factura']).round(2)
-    df_consolidado['Dif SB02'] = (df_consolidado['Monto Credito'] - df_consolidado['Monto SB02']).round(2)
-    df_consolidado['Dif Capital'] = (df_consolidado['Monto Factura'] - df_consolidado['Monto SB02']).round(2)
+    df_consolidado['Dif Emitida'] = df_consolidado['Monto Credito'] - df_consolidado['Monto Factura']
+    df_consolidado['Dif SB02'] = df_consolidado['Monto Credito'] - df_consolidado['Monto SB02']
+    df_consolidado['Dif Capital'] = df_consolidado['Monto Factura'] - df_consolidado['Monto SB02']
     
 
 
