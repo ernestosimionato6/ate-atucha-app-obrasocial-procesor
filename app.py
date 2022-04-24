@@ -122,3 +122,14 @@ with c30:
         "factura_preprocesada.csv",
         "Download to TXT",
     )
+    
+with c31:
+    df_factura_lite.to_excel('consolidado.xlsx')
+    with open("consolidado.xlsx", "rb") as file:
+        btn = st.download_button(
+             label="Download image",
+             data=file,
+             file_name="consolidado.xlsx"
+        )
+
+    
