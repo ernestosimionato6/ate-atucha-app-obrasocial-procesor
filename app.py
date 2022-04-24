@@ -17,6 +17,16 @@ from functionforDownloadButtons import download_button
 ###################################
 
 
+def color_negative_red(val):
+    """
+    Takes a scalar and returns a string with
+    the css property `'color: red'` for negative
+    strings, black otherwise.
+    """
+    color = 'red' if val < 0 else 'black'
+    return 'color: %s' % color
+
+
 def _max_width_():
     max_width_str = f"max-width: 1800px;"
     st.markdown(
@@ -212,7 +222,7 @@ if pd_notacredito_origin.empty == False:
 st.subheader("Los datos consolidados aparecerán debajo 👇")
 st.text("")
 
-st.dataframe(df_consolidado)
+st.dataframe(df_consolidado.style.applymap(color_negative_red))
 
 st.text("")
 
