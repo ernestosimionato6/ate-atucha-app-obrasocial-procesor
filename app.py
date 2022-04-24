@@ -152,6 +152,9 @@ if pd_notacredito_origin.empty == False:
     df_merge_origin = df_factura_lite.merge(df_notacredito_lite, on='Socio', how='left')
     df_sin_nota = df_merge_origin[pd.isnull(df_merge_origin['Monto Credito'])]
     df_consolidado = df_merge_origin[~pd.isnull(df_merge_origin['Monto Credito'])]
+    df_consolidado['Dif Emitida'] = (df_consolidado['Monto Credito'] - df_consolidado['Monto Factura']).round()
+    df_consolidado['Dif SB02'] = (df_consolidado['Monto Credito'] - df_consolidado['Monto SB02']).round()
+    df_consolidado['Dif Capital'] = (df_consolidado['Monto Factura'] - df_consolidado['Monto SB02']).round()
     
 
 
@@ -216,7 +219,7 @@ c29, c30, c31 = st.columns([1, 1, 2])
 
 with c30:
 
-    df_factura_lite.to_excel('consolidado.xlsx', index=False)
+    df_consolidado.to_excel('consolidado.xlsx', index=False)
     with open("consolidado.xlsx", "rb") as file:
         btn = st.download_button(
              label="Descargar Consolidado",
