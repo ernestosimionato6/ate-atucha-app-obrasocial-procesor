@@ -210,7 +210,7 @@ st.subheader("Los datos consolidados aparecerán debajo 👇")
 st.text("")
 
 st.dataframe(df_consolidado)
-    
+st.write(df_consolidado.style.format("{:.2}"))
 st.text("")
 
 c29, c30, c31 = st.columns([1, 1, 2])
