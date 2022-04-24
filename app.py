@@ -129,8 +129,8 @@ if df_factura_selected.empty == False:
     df_factura_lite = df_factura_selected[df_factura_columns]
     df_factura_lite.rename(columns = {'Importe exento':'Monto Factura'}, inplace = True)
 
-if df_notacredito_origin.empty == False:
-    df_notacredito_lite = df_notacredito_origin
+if pd_notacredito_origin.empty == False:
+    df_notacredito_lite = pd_notacredito_origin
     
     
     
