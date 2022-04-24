@@ -88,7 +88,7 @@ response = AgGrid(
 )
 
 df_factura_selected = pd.DataFrame(response["selected_rows"])
-st.print(df_factura_selected.empty)
+st.text(df_factura_selected.empty)
 
 if len(df_factura_selected) == 0:
     # df_factura_selected = pd.DataFrame(response["selected_rows"])
