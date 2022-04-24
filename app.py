@@ -26,7 +26,7 @@ def _max_width_():
         unsafe_allow_html=True,
     )
 
-st.set_page_config(page_icon="✂️", page_title="CSV Wrangler")
+st.set_page_config(page_icon="✂️", page_title="Atucha Ate - Obra Social Procesor")
 
 # st.image("https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/balloon_1f388.png", width=100)
 st.image(
@@ -34,7 +34,7 @@ st.image(
     width=100,
 )
 
-st.title("CSV Wrangler")
+st.title("Atucha Ate - Obra Social Procesor")
 
 # st.caption(
 #     "PRD : TBC | Streamlit Ag-Grid from Pablo Fonseca: https://pypi.org/project/streamlit-aggrid/"
@@ -72,15 +72,15 @@ with c30:
     )
 
     if uploaded_file is not None:
-        file_container = st.expander("Check your uploaded .csv")
-        shows = pd.read_csv(uploaded_file)
-        uploaded_file.seek(0)
-        file_container.write(shows)
+        factura_file_container = st.expander("Check your uploaded .csv")
+        pd_factura_origin = pd.read_excel(factura_uploaded_file)
+        factura_uploaded_file.seek(0)
+        factura_file_container.write(pd_factura_origin)
 
     else:
         st.info(
             f"""
-                👆 Upload a .csv file first. Sample to try: [biostats.csv](https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv)
+                👆 Cargue una factura.xslx primero. Muestra para probar: [factura.xslx](https://docs.google.com/spreadsheets/d/e/2PACX-1vTkO14QeW1s6OMFhSQd1XwUyERxVZ7mwiw_X7PHoXIlvGh_xYWKq4nmsCpbRjjbQg/pub?output=xlsx))
                 """
         )
 
@@ -88,7 +88,7 @@ with c30:
 
 from st_aggrid import GridUpdateMode, DataReturnMode
 
-gb = GridOptionsBuilder.from_dataframe(shows)
+gb = GridOptionsBuilder.from_dataframe(pd_factura)
 # enables pivoting on all columns, however i'd need to change ag grid to allow export of pivoted/grouped data, however it select/filters groups
 gb.configure_default_column(enablePivot=True, enableValue=True, enableRowGroup=True)
 gb.configure_selection(selection_mode="multiple", use_checkbox=True)
@@ -102,7 +102,7 @@ st.success(
 )
 
 response = AgGrid(
-    shows,
+    pd_factura,
     gridOptions=gridOptions,
     enable_enterprise_modules=True,
     update_mode=GridUpdateMode.MODEL_CHANGED,
