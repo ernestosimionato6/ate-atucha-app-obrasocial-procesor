@@ -234,7 +234,7 @@ if pd_notacredito_origin.empty == False:
     )
     
 
-st.subheader("Los datos consolidados aparecerán debajo 👇")
+st.subheader("Una descripcion estadistica de los datos consolidados 👇")
 st.text("")
 st.dataframe(df_consolidado.describe())
 
