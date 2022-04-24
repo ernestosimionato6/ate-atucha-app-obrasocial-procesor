@@ -156,8 +156,7 @@ if pd_notacredito_origin.empty == False:
     df_consolidado['Dif Emitida'] = df_consolidado['Monto Credito'] - df_consolidado['Monto Factura']
     df_consolidado['Dif SB02'] = df_consolidado['Monto Credito'] - df_consolidado['Monto SB02']
     df_consolidado['Dif Capital'] = df_consolidado['Monto Factura'] - df_consolidado['Monto SB02']
-    
-
+    df_consolidado = df_consolidado.round(2)
 
     
     gb_sin_nota = GridOptionsBuilder.from_dataframe(df_sin_nota)
