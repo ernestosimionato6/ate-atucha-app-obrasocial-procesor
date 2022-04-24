@@ -124,10 +124,10 @@ with c30:
     )
     
 with c31:
-    df_factura_lite.to_excel('consolidado.xlsx')
+    df_factura_lite.to_excel('consolidado.xlsx', index=False)
     with open("consolidado.xlsx", "rb") as file:
         btn = st.download_button(
-             label="Download image",
+             label="Download to Excel",
              data=file,
              file_name="consolidado.xlsx"
         )
