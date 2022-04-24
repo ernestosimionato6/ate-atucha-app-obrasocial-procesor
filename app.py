@@ -146,7 +146,8 @@ response = AgGrid(
 
 df_consolidado = pd.DataFrame()
 
-df_factura_selected = pd.DataFrame(response["selected_rows"])
+df_factura_selected = pd_factura_origin
+# pd.DataFrame(response["selected_rows"])
 
 df_factura_lite = pd.DataFrame()
 if df_factura_selected.empty == False:
