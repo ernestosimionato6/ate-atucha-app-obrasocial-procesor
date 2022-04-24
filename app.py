@@ -87,9 +87,10 @@ response = AgGrid(
     fit_columns_on_grid_load=False,
 )
 
-
-if response is not None:
-    df_factura_selected = pd.DataFrame(response["selected_rows"])
+df_factura_selected = pd.DataFrame(response["selected_rows"])
+    
+if df_factura_selected is not None:
+    # df_factura_selected = pd.DataFrame(response["selected_rows"])
     df_factura_selected['Plan'] = df_factura_selected['Plan tarifa'].str.slice(0,4)
     df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan', 'Cant miembros', 'Importe exento']
     df_factura_lite = df_factura_selected[df_factura_columns]
