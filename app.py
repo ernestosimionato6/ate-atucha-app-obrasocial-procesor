@@ -135,7 +135,7 @@ if df_factura_selected.empty == False:
     df_factura_lite.rename(columns = {'Importe exento':'Monto Factura'}, inplace = True)
     df_factura_lite['Monto SB02'] = (df_factura_lite['Cant miembros'] * precio_sb02_per_capita).round()
     
-    df_montos_por_capita_encontrados = (df_factura_lite['Factura Emitida'] / df_factura_lite['Cant miembros']).round(1).unique()
+    df_montos_por_capita_encontrados = (df_factura_lite['Monto Factura'] / df_factura_lite['Cant miembros']).round(1).unique()
     st.markdown("> montos por capita encontrados son" + df_montos_por_capita_encontrados)
     
     
