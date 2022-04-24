@@ -119,7 +119,7 @@ df_factura_lite.rename(columns = {'Importe exento':'Factura Emitida'}, inplace =
 st.subheader("Filtered data will appear below 👇 ")
 st.text("")
 
-st.table(df)
+st.table(df_factura_lite)
 
 st.text("")
 
