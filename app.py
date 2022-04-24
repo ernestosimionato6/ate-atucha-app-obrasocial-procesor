@@ -117,7 +117,7 @@ response = AgGrid(
 
 
 df_factura_selected = pd.DataFrame(response["selected_rows"])
-st.text(df_factura_selected.empty)
+
 df_factura_lite = pd.DataFrame()
 if df_factura_selected.empty == False:
     
@@ -129,11 +129,63 @@ if df_factura_selected.empty == False:
     df_factura_lite = df_factura_selected[df_factura_columns]
     df_factura_lite.rename(columns = {'Importe exento':'Monto Factura'}, inplace = True)
 
+df_merge_origin = pd.DataFrame()
+df_sin_nota = pd.DataFrame()
+df_consolidado = pd.DataFrame()
+
 if pd_notacredito_origin.empty == False:
     df_notacredito_lite = pd_notacredito_origin
+    notacredito_columns = ['Socio', 'Importe exento']
+    df_notacredito_lite = pd_notacredito_origin[df_notacredito_columns]
+    df_notacredito_lite.rename(columns = {'Importe exento':'Monto Credito'}, inplace = True)
     
+    df_merge_origin = df_factura_lite.merge(df_notacredito_lite), on='Socio', how='left')
+    df_sin_nota = df_merge_origin[~pd.isnull(df_merge_origin['Monto Credito'])]
+    df_consolidado = df_merge_origin[pd.isnull(df_merge_origin['Monto Credito'])]
     
+    gb_sin_nota = GridOptionsBuilder.from_dataframe(df_sin_nota)
+    # enables pivoting on all columns, however i'd need to change ag grid to allow export of pivoted/grouped data, however it select/filters groups
+    gb_sin_nota.configure_default_column(enablePivot=True, enableValue=True, enableRowGroup=True)
+    gb_sin_nota.configure_selection(selection_mode="multiple", use_checkbox=True)
+    gb_sin_nota.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
+    gridSinNotaOptions = gb.build()
+
+    st.success(
+        f"""
+            💡 Tip! Hold the shift key when selecting rows to select multiple rows at once!
+            """
+    )
+
+    responseSinNota = AgGrid(
+        df_sin_nota,
+        gridOptions=gridSinNotaOptions,
+        enable_enterprise_modules=True,
+        update_mode=GridUpdateMode.MODEL_CHANGED,
+        data_return_mode=DataReturnMode.FILTERED_AND_SORTED,
+        fit_columns_on_grid_load=False,
+    )
     
+    gb_consolidado = GridOptionsBuilder.from_dataframe(df_consolidado)
+    # enables pivoting on all columns, however i'd need to change ag grid to allow export of pivoted/grouped data, however it select/filters groups
+    gb_consolidado.configure_default_column(enablePivot=True, enableValue=True, enableRowGroup=True)
+    gb_consolidado.configure_selection(selection_mode="multiple", use_checkbox=True)
+    gb_consolidado.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
+    gridConsolidadoOptions = gb.build()
+
+    st.success(
+        f"""
+            💡 Tip! Hold the shift key when selecting rows to select multiple rows at once!
+            """
+    )
+
+    responseConsolidado = AgGrid(
+        df_Consolidado,
+        gridOptions=gridConsolidadoOptions,
+        enable_enterprise_modules=True,
+        update_mode=GridUpdateMode.MODEL_CHANGED,
+        data_return_mode=DataReturnMode.FILTERED_AND_SORTED,
+        fit_columns_on_grid_load=False,
+    )
     
 
 st.subheader("Filtered data will appear below 👇 ")
