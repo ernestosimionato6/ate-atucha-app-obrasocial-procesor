@@ -65,13 +65,13 @@ c29, c30, c31 = st.columns([1, 6, 1])
 
 with c30:
 
-    uploaded_file = st.file_uploader(
+    factura_uploaded_file = st.file_uploader(
         "",
         key="1",
         help="To activate 'wide mode', go to the hamburger menu > Settings > turn on 'wide mode'",
     )
 
-    if uploaded_file is not None:
+    if factura_uploaded_file is not None:
         factura_file_container = st.expander("Check your uploaded .csv")
         pd_factura_origin = pd.read_excel(factura_uploaded_file)
         factura_uploaded_file.seek(0)
