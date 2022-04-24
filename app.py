@@ -131,7 +131,7 @@ gridOptions = gb.build()
 
 st.success(
     f"""
-        💡 Tip! Hold the shift key when selecting rows to select multiple rows at once!
+        💡 Un vistazo de los socios cargados en la factura !
         """
 )
 
