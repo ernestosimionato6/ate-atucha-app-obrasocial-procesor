@@ -178,7 +178,7 @@ if pd_notacredito_origin.empty == False:
     )
 
     responseConsolidado = AgGrid(
-        df_Consolidado,
+        df_consolidado,
         gridOptions=gridConsolidadoOptions,
         enable_enterprise_modules=True,
         update_mode=GridUpdateMode.MODEL_CHANGED,
