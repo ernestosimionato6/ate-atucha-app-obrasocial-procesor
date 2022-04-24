@@ -162,7 +162,7 @@ if df_factura_selected.empty == False:
     
     df_montos_por_capita_encontrados = (df_factura_lite['Monto Factura'] / df_factura_lite['Cant miembros']).round(2).unique()
     st.markdown("> montos por capita encontrados son")
-    st.table(df_montos_por_capita_encontrados.style.format("{:.2}"))
+    st.table(df_montos_por_capita_encontrados)
     
     
 df_merge_origin = pd.DataFrame()
