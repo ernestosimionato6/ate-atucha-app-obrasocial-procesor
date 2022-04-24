@@ -48,9 +48,9 @@ def _max_width_():
 
 st.set_page_config(page_icon="✂️", page_title="Atucha Ate - Obra Social Procesor")
 
-# st.image("https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/balloon_1f388.png", width=100)
+# st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Asociaci%C3%B3n_Trabajadores_del_Estado.png/200px-Asociaci%C3%B3n_Trabajadores_del_Estado.png", width=100)
 st.image(
-    "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/scissors_2702-fe0f.png",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Asociaci%C3%B3n_Trabajadores_del_Estado.png/200px-Asociaci%C3%B3n_Trabajadores_del_Estado.png",
     width=100,
 )
 
