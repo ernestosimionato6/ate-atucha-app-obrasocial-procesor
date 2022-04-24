@@ -61,9 +61,9 @@ st.markdown("#### Parametrizacion:")
 
 precio_sb02_per_capita = st.number_input('Ingrese el monto por capita para el plan SB02', value=8325.71)
 
-valor_capita_und = st.number_input('Ingrese el valor por capita UND', value=269, help="monto a multiplicar por la cantidad de miembros")
+valor_capita_und = st.number_input('Ingrese el valor por capita UND', value=269, help="monto multiplicador por la cantidad de miembros para el calculo de 'Valor Cap Und'")
 
-valor_capita_res = st.number_input('Ingrese el valor por capita RES', value=118, help="monto a multiplicar por la cantidad de miembros")
+valor_capita_res = st.number_input('Ingrese el valor por capita RES', value=118, help="monto multiplicador por la cantidad de miembros para el calculo de 'Valor Cap Res'")
 
 coef_final = st.number_input('Ingrese el coeficiente final para el aporte', value=1.2,  help="coeficiente multiplicador aplicado al aporte final")
 
