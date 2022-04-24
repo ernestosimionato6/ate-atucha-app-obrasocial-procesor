@@ -134,7 +134,6 @@ df_sin_nota = pd.DataFrame()
 df_consolidado = pd.DataFrame()
 
 if pd_notacredito_origin.empty == False:
-    df_notacredito_lite = pd_notacredito_origin
     df_notacredito_columns = ['Socio', 'Importe exento']
     df_notacredito_lite = pd_notacredito_origin[df_notacredito_columns]
     df_notacredito_lite.rename(columns = {'Importe exento':'Monto Credito'}, inplace = True)
