@@ -185,7 +185,7 @@ if pd_notacredito_origin.empty == False:
     gb_consolidado.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
     gridConsolidadoOptions = gb_consolidado.build()
 
-    st.success(
+    st.warning(
         f"""
             💡 Beneficiarios sin nota de credito ! Estos nos se procesaran en el consolidado !
             """
