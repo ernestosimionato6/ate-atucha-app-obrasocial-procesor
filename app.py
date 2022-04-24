@@ -131,8 +131,8 @@ gridOptions = gb.build()
 
 st.success(
     f"""
-        💡 Un vistazo de los socios cargados en la factura ! <br/>
-           Tip ! podes filtrar, ordenar, agrupar en la barra lateral
+        💡 Un vistazo de los socios cargados en la factura,
+           podes filtrar, ordenar, agruparlos rapidamente.
         """
 )
 
