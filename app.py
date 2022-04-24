@@ -246,7 +246,7 @@ st.text("")
 st.dataframe(df_consolidado.describe())
 
 
-st.subheader("Los datos consolidados aparecerán debajo 👇")
+st.subheader("Listado completo del consolidado aparecerá debajo 👇")
 st.text("")
 
 
