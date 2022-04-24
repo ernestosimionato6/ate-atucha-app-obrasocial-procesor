@@ -103,7 +103,7 @@ st.success(
 )
 
 response = AgGrid(
-    pd_factura,
+    pd_factura_origin,
     gridOptions=gridOptions,
     enable_enterprise_modules=True,
     update_mode=GridUpdateMode.MODEL_CHANGED,
