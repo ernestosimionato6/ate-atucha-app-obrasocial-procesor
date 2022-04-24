@@ -139,7 +139,7 @@ if pd_notacredito_origin.empty == False:
     df_notacredito_lite = pd_notacredito_origin[df_notacredito_columns]
     df_notacredito_lite.rename(columns = {'Importe exento':'Monto Credito'}, inplace = True)
     
-    df_merge_origin = df_factura_lite.merge(df_notacredito_lite), on='Socio', how='left')
+    df_merge_origin = df_factura_lite.merge(df_notacredito_lite, on='Socio', how='left')
     df_sin_nota = df_merge_origin[~pd.isnull(df_merge_origin['Monto Credito'])]
     df_consolidado = df_merge_origin[pd.isnull(df_merge_origin['Monto Credito'])]
     
