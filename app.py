@@ -88,9 +88,9 @@ response = AgGrid(
 )
 
 df_factura_selected = pd.DataFrame(response["selected_rows"])
-st.table(df_factura_selected)
+st.print(df_factura_selected.empty)
 
-if ~df_factura_selected.empty:
+if len(df_factura_selected) == 0:
     # df_factura_selected = pd.DataFrame(response["selected_rows"])
     df_factura_selected['Plan'] = df_factura_selected['Plan tarifa'].str.slice(0,4)
     df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan', 'Cant miembros', 'Importe exento']
