@@ -150,8 +150,8 @@ if pd_notacredito_origin.empty == False:
     df_notacredito_lite.rename(columns = {'Importe exento':'Monto Credito'}, inplace = True)
     
     df_merge_origin = df_factura_lite.merge(df_notacredito_lite, on='Socio', how='left')
-    df_sin_nota = df_merge_origin[~pd.isnull(df_merge_origin['Monto Credito'])]
-    df_consolidado = df_merge_origin[pd.isnull(df_merge_origin['Monto Credito'])]
+    df_sin_nota = df_merge_origin[pd.isnull(df_merge_origin['Monto Credito'])]
+    df_consolidado = df_merge_origin[~pd.isnull(df_merge_origin['Monto Credito'])]
     
 
 
@@ -163,9 +163,9 @@ if pd_notacredito_origin.empty == False:
     gb_sin_nota.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
     gridSinNotaOptions = gb_sin_nota.build()
 
-    st.success(
+    st.warning(
         f"""
-            💡 Consolidado de Beneficiarios ! Es una vista previa del consolidado generado!
+            💡 Beneficiarios sin nota de credito ! Estos nos se procesaran en el consolidado !
             """
     )
 
@@ -185,11 +185,13 @@ if pd_notacredito_origin.empty == False:
     gb_consolidado.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
     gridConsolidadoOptions = gb_consolidado.build()
 
-    st.warning(
+
+    st.success(
         f"""
-            💡 Beneficiarios sin nota de credito ! Estos nos se procesaran en el consolidado !
+            💡 Consolidado de Beneficiarios ! Es una vista previa del consolidado generado!
             """
     )
+
 
     responseConsolidado = AgGrid(
         df_consolidado,
