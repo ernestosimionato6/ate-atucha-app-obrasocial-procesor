@@ -40,7 +40,7 @@ st.title("Atucha Ate - Obra Social Procesor")
 st.markdown("-----------")
 st.markdown("#### Parametrizacion:")
 
-precio_sb02_per_capita = st.number_input('Ingrese el monto por capita para el plan SB02')
+precio_sb02_per_capita = st.number_input('Ingrese el monto por capita para el plan SB02', value=8325.71)
 
 
 st.markdown("-----------")
