@@ -37,30 +37,6 @@ st.image(
 
 st.title("Atucha Ate - Obra Social Procesor")
 
-# st.caption(
-#     "PRD : TBC | Streamlit Ag-Grid from Pablo Fonseca: https://pypi.org/project/streamlit-aggrid/"
-# )
-
-
-# ModelType = st.radio(
-#     "Choose your model",
-#     ["Flair", "DistilBERT (Default)"],
-#     help="At present, you can choose between 2 models (Flair or DistilBERT) to embed your text. More to come!",
-# )
-
-# with st.expander("ToDo's", expanded=False):
-#     st.markdown(
-#         """
-# -   Add pandas.json_normalize() - https://streamlit.slack.com/archives/D02CQ5Z5GHG/p1633102204005500
-# -   **Remove 200 MB limit and test with larger CSVs**. Currently, the content is embedded in base64 format, so we may end up with a large HTML file for the browser to render
-# -   **Add an encoding selector** (to cater for a wider array of encoding types)
-# -   **Expand accepted file types** (currently only .csv can be imported. Could expand to .xlsx, .txt & more)
-# -   Add the ability to convert to pivot → filter → export wrangled output (Pablo is due to change AgGrid to allow export of pivoted/grouped data)
-# 	    """
-#     )
-# 
-#     st.text("")
-
 
 c29, c30, c31 = st.columns([1, 6, 1])
 
@@ -111,18 +87,21 @@ response = AgGrid(
     fit_columns_on_grid_load=False,
 )
 
-df_factura_selected = pd.DataFrame(response["selected_rows"])
-df_factura_selected['Plan'] = df_factura_selected['Plan tarifa'].str.slice(0,4)
-df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan', 'Cant miembros', 'Importe exento']
-df_factura_lite = df_factura_selected[df_factura_columns]
-df_factura_lite.rename(columns = {'Importe exento':'Factura Emitida'}, inplace = True)
+
+if response is not None:
+    df_factura_selected = pd.DataFrame(response["selected_rows"])
+    df_factura_selected['Plan'] = df_factura_selected['Plan tarifa'].str.slice(0,4)
+    df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan', 'Cant miembros', 'Importe exento']
+    df_factura_lite = df_factura_selected[df_factura_columns]
+    df_factura_lite.rename(columns = {'Importe exento':'Factura Emitida'}, inplace = True)
 
 
-st.subheader("Filtered data will appear below 👇 ")
-st.text("")
+    st.subheader("Filtered data will appear below 👇 ")
+    st.text("")
 
-st.table(df_factura_lite)
+    st.table(df_factura_lite)
 
+    
 st.text("")
 
 c29, c30, c31 = st.columns([1, 1, 2])
