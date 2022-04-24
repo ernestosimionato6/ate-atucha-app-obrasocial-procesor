@@ -26,6 +26,12 @@ def color_negative_red(val):
     color = 'red' if val < 0 else 'black'
     return 'color: %s' % color
 
+def highlight_max(s):
+    '''
+    highlight the maximum in a Series yellow.
+    '''
+    is_max = s == s.max()
+    return ['background-color: yellow' if v else '' for v in is_max]
 
 def _max_width_():
     max_width_str = f"max-width: 1800px;"
@@ -222,7 +228,10 @@ if pd_notacredito_origin.empty == False:
 st.subheader("Los datos consolidados aparecerán debajo 👇")
 st.text("")
 
-st.dataframe(df_consolidado.style.applymap(color_negative_red))
+
+# format_dict = {'sum':'${0:,.0f}', 'date': '{:%m-%Y}', 'pct_of_total': '{:.2%}'}
+# st.dataframe(df_consolidado.style.applymap(color_negative_red))
+st.dataframe(df_consolidado)
 
 st.text("")
 
