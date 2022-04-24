@@ -194,7 +194,7 @@ if pd_notacredito_origin.empty == False:
     gb_sin_nota.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
     gridSinNotaOptions = gb_sin_nota.build()
 
-    st.warning(
+    st.error(
         f"""
             💡 Beneficiarios sin nota de credito ! Estos nos se procesaran en el consolidado !
             """
@@ -236,12 +236,16 @@ if pd_notacredito_origin.empty == False:
 
 st.subheader("Los datos consolidados aparecerán debajo 👇")
 st.text("")
+st.dataframe(df_consolidado.describe())
+
+
+st.subheader("Los datos consolidados aparecerán debajo 👇")
+st.text("")
 
 
 # format_dict = {'sum':'${0:,.0f}', 'date': '{:%m-%Y}', 'pct_of_total': '{:.2%}'}
 # st.dataframe(df_consolidado.style.applymap(color_negative_red))
 
-st.dataframe(df_consolidado.describe())
 
 st.dataframe(df_consolidado)
 
