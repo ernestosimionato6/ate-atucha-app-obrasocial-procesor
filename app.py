@@ -210,7 +210,7 @@ if pd_notacredito_origin.empty == False:
 st.subheader("Los datos consolidados aparecerán debajo 👇")
 st.text("")
 
-# st.table(df_consolidado)
+st.table(df_consolidado)
     
 st.text("")
 
