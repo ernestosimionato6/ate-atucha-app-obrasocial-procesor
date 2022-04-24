@@ -235,6 +235,11 @@ if pd_notacredito_origin.empty == False:
     
 
 st.subheader("Una descripcion estadistica de los datos consolidados 👇")
+st.info(
+    f"""
+        💡  Con primer vistazo, puede ser util para ver numeros maximos que no tengan sentido
+        """
+)
 st.text("")
 st.dataframe(df_consolidado.describe())
 
