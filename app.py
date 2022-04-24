@@ -37,9 +37,14 @@ st.image(
 
 st.title("Atucha Ate - Obra Social Procesor")
 
+st.markdown("-----------")
+st.markdown("#### Parametrizacion:")
+
+precio_sb02_per_capita = st.number_input('Ingrese el monto por capita para el plan SB02')
+
 
 st.markdown("-----------")
-st.markdown("## Paso nro1 - Cargamos la Factura:")
+st.markdown("#### Carga de Factura y Nota de Credito:")
 
 
 c29, c30, c31 = st.columns([1, 6, 1])
@@ -128,7 +133,12 @@ if df_factura_selected.empty == False:
     df_factura_columns = ['Socio', 'Cuil', 'Nombre y apellido', 'Plan', 'Cant miembros', 'Importe exento']
     df_factura_lite = df_factura_selected[df_factura_columns]
     df_factura_lite.rename(columns = {'Importe exento':'Monto Factura'}, inplace = True)
-
+    df_factura_lite['Monto SB02'] = (df_factura_lite['Cant miembros'] * precio_sb02_per_capita).round()
+    
+    df_montos_por_capita_encontrados = (df_factura_lite['Factura Emitida'] / df_factura_lite['Cant miembros']).round(1).unique()
+    st.markdown("> montos por capita encontrados son" + df_montos_por_capita_encontrados)
+    
+    
 df_merge_origin = pd.DataFrame()
 df_sin_nota = pd.DataFrame()
 df_consolidado = pd.DataFrame()
@@ -141,6 +151,9 @@ if pd_notacredito_origin.empty == False:
     df_merge_origin = df_factura_lite.merge(df_notacredito_lite, on='Socio', how='left')
     df_sin_nota = df_merge_origin[~pd.isnull(df_merge_origin['Monto Credito'])]
     df_consolidado = df_merge_origin[pd.isnull(df_merge_origin['Monto Credito'])]
+    
+
+
     
     gb_sin_nota = GridOptionsBuilder.from_dataframe(df_sin_nota)
     # enables pivoting on all columns, however i'd need to change ag grid to allow export of pivoted/grouped data, however it select/filters groups
