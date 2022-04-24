@@ -61,6 +61,11 @@ st.markdown("#### Parametrizacion:")
 
 precio_sb02_per_capita = st.number_input('Ingrese el monto por capita para el plan SB02', value=8325.71)
 
+valor_capita_und = st.number_input('Ingrese el valor por capita UND', value=269)
+
+valor_capita_res = st.number_input('Ingrese el valor por capita RES', value=118)
+
+coef_final = st.number_input('Ingrese el coeficiente final para el aporte', value=1.2)
 
 st.markdown("-----------")
 st.markdown("#### Carga de Factura y Nota de Credito:")
@@ -175,6 +180,10 @@ if pd_notacredito_origin.empty == False:
     df_consolidado['Dif Emitida'] = df_consolidado['Monto Credito'] - df_consolidado['Monto Factura']
     df_consolidado['Dif SB02'] = df_consolidado['Monto Credito'] - df_consolidado['Monto SB02']
     df_consolidado['Dif Capital'] = df_consolidado['Monto Factura'] - df_consolidado['Monto SB02']
+    df_consolidado['Valor Cap Und'] = df_consolidado['Cant miembros'] * valor_capita_und
+    df_consolidado['Valor Cap Res'] = df_consolidado['Cant miembros'] * valor_capita_res
+    df_consolidado['Aporte Lineal'] = df_consolidado['Dif Capital'] +  df_consolidado['Valor Cap Und'] +  df_consolidado['Valor Cap Res']
+    df_consolidado['Aporte Final'] = df_consolidado['Aporte Lineal'] * coef_final
     df_consolidado = df_consolidado.round(2)
 
     
