@@ -89,7 +89,7 @@ with c30:
 
 from st_aggrid import GridUpdateMode, DataReturnMode
 
-gb = GridOptionsBuilder.from_dataframe(pd_factura)
+gb = GridOptionsBuilder.from_dataframe(pd_factura_origin)
 # enables pivoting on all columns, however i'd need to change ag grid to allow export of pivoted/grouped data, however it select/filters groups
 gb.configure_default_column(enablePivot=True, enableValue=True, enableRowGroup=True)
 gb.configure_selection(selection_mode="multiple", use_checkbox=True)
