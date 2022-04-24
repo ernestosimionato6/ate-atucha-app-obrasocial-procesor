@@ -209,7 +209,7 @@ if pd_notacredito_origin.empty == False:
 st.subheader("Los datos consolidados aparecerán debajo 👇")
 st.text("")
 
-st.dataframe(df_consolidado.round(2))
+st.dataframe(df_consolidado)
     
 st.text("")
 
