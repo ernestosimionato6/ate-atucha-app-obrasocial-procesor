@@ -165,7 +165,7 @@ if pd_notacredito_origin.empty == False:
 
     st.success(
         f"""
-            💡 Tip! Hold the shift key when selecting rows to select multiple rows at once!
+            💡 Beneficiarios sin nota de credito ! Estos nos se procesaran en el consolidado !
             """
     )
 
@@ -187,7 +187,7 @@ if pd_notacredito_origin.empty == False:
 
     st.success(
         f"""
-            💡 Tip! Hold the shift key when selecting rows to select multiple rows at once!
+            💡 Consolidado de Beneficiarios ! Es una vista previa del consolidado generado!
             """
     )
 
