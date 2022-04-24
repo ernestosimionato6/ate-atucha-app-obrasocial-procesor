@@ -147,7 +147,7 @@ if pd_notacredito_origin.empty == False:
     gb_sin_nota.configure_default_column(enablePivot=True, enableValue=True, enableRowGroup=True)
     gb_sin_nota.configure_selection(selection_mode="multiple", use_checkbox=True)
     gb_sin_nota.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
-    gridSinNotaOptions = gb.build()
+    gridSinNotaOptions = gb_sin_nota.build()
 
     st.success(
         f"""
@@ -169,7 +169,7 @@ if pd_notacredito_origin.empty == False:
     gb_consolidado.configure_default_column(enablePivot=True, enableValue=True, enableRowGroup=True)
     gb_consolidado.configure_selection(selection_mode="multiple", use_checkbox=True)
     gb_consolidado.configure_side_bar()  # side_bar is clearly a typo :) should by sidebar
-    gridConsolidadoOptions = gb.build()
+    gridConsolidadoOptions = gb_consolidado.build()
 
     st.success(
         f"""
