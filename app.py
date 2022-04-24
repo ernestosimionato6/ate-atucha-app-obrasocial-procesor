@@ -71,8 +71,8 @@ with c30:
         
     notacredito_uploaded_file = st.file_uploader(
         "",
-        key="1",
-        help="To activate 'wide mode', go to the hamburger menu > Settings > turn on 'wide mode'",
+        key="2",
+        help=""
     )
 
     if notacredito_uploaded_file is not None:
