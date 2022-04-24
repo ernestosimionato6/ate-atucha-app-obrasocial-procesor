@@ -49,6 +49,7 @@ st.markdown("#### Carga de Factura y Nota de Credito:")
 
 c29, c30, c31 = st.columns([1, 6, 1])
 
+
 with c30:
 
     factura_uploaded_file = st.file_uploader(
@@ -119,7 +120,7 @@ response = AgGrid(
     fit_columns_on_grid_load=False,
 )
 
-
+df_consolidado pd.DataFrame()
 
 df_factura_selected = pd.DataFrame(response["selected_rows"])
 
@@ -209,7 +210,7 @@ if pd_notacredito_origin.empty == False:
 st.subheader("Los datos consolidados aparecerán debajo 👇")
 st.text("")
 
-st.dataframe(df_consolidado)
+st.table(df_consolidado)
     
 st.text("")
 
